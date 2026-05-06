@@ -1,0 +1,23 @@
+@use 'tokens' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+body {
+  color: $color-fg;
+  font-family: $font-sans;
+}
+
+button {
+  cursor: pointer;
+}

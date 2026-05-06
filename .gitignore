@@ -1,0 +1,120 @@
+# =============================================================================
+# Unity
+# =============================================================================
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Never ignore .meta inside Assets/ — meta files are part of the source of truth
+!/[Aa]ssets/**/*.meta
+
+# Auto-generated Rider/VS plugin folder
+/[Aa]ssets/Plugins/Editor/JetBrains*
+
+# Asset Store tools (uncomment if not used)
+# /[Aa]ssets/AssetStoreTools*
+
+# Auto-generated Addressables binaries
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Auto-generated Android streaming assets
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Crash report
+sysinfo.txt
+
+# Crashlytics
+crashlytics-build.properties
+
+# =============================================================================
+# Unity-generated IDE project files (regenerated on import — do not commit)
+# =============================================================================
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+ExportedObj/
+.consulo/
+
+# Unity3D-generated meta files for binaries that don't ship
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# =============================================================================
+# Build outputs
+# =============================================================================
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# =============================================================================
+# IDE / editor
+# =============================================================================
+.vs/
+.vscode/
+.idea/
+.gradle/
+
+# =============================================================================
+# OS
+# =============================================================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =============================================================================
+# Frontend/ — Node.js source tree for atomic Gameface views
+# Track sources (HTML/TS/SCSS/Vue), ignore everything generated.
+# =============================================================================
+
+# Node + tooling caches
+/Frontend/node_modules/
+/Frontend/node_modules.meta
+/Frontend/dist/
+/Frontend/dist.meta
+/Frontend/.cache/
+/Frontend/.parcel-cache/
+/Frontend/.eslintcache
+/Frontend/*.log
+/Frontend/npm-debug.log*
+/Frontend/yarn-debug.log*
+/Frontend/yarn-error.log*
+
+# scripts/sync-cohtml.mjs copies shared/cohtml.js into every view dir
+/Frontend/views/**/cohtml.js
+/Frontend/views/**/cohtml.js.meta
+
+# scripts/build-js.mjs (esbuild) emits views/**/js/main.js next to main.ts
+/Frontend/views/**/js/main.js
+/Frontend/views/**/js/main.js.map
+/Frontend/views/**/js/main.js.meta
+/Frontend/views/**/js/main.js.map.meta
+
+# sass compiles views/**/*.scss → views/**/*.css in place
+/Frontend/views/**/*.css
+/Frontend/views/**/*.css.map
+/Frontend/views/**/*.css.meta
+/Frontend/views/**/*.css.map.meta
+
+# TypeScript build info
+/Frontend/**/*.tsbuildinfo

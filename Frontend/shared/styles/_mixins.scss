@@ -1,0 +1,9 @@
+@use 'tokens' as *;
+
+@mixin pass-through-pointer-events {
+  pointer-events: none;
+
+  & > * {
+    pointer-events: auto;
+  }
+}

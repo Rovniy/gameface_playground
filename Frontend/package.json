@@ -1,0 +1,30 @@
+{
+  "name": "chillbase",
+  "private": true,
+  "version": "0.3.0",
+  "description": "Vue 3 + SCSS + TS sources for atomic Gameface views — one self-contained Vite build per view.",
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-cohtml.mjs",
+    "dev": "npm run sync && vite",
+    "build": "npm run sync && node scripts/build-views.mjs",
+    "build:watch": "npm run sync && node scripts/build-views.mjs --watch",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^15.11.0",
+    "sass": "^1.83.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.3",
+    "vitest": "^2.1.8",
+    "vue-tsc": "^2.2.0"
+  }
+}

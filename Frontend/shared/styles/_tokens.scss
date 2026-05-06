@@ -1,0 +1,31 @@
+// Design tokens — single source of truth for chillbase visual language.
+// Consume from a view's main.scss with: `@use 'shared/styles' as *;`
+
+$color-bg:           #0e1116;
+$color-surface:      #161a22;
+$color-surface-soft: #1f2632;
+$color-accent:       #7c5cff;
+$color-accent-soft:  #9d80ff;
+$color-fg:           #e6e8ee;
+$color-muted: #cbcfd8;
+$color-danger:       #ff5e6c;
+$color-warn: #ffd15e;
+$color-danger-accent: #fa2234;
+$color-success:      #4ade80;
+
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+
+$space-xs: 4px;
+$space-sm: 8px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+
+$font-sans: sans-serif;
+$font-mono: monospace;
+
+$shadow-md: 0 8px 16px rgba(0, 0, 0, 0.3);
+$shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.4);

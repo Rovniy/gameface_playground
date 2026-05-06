@@ -1,0 +1,7 @@
+// Barrel: lets a view write `@use 'shared/styles' as *;` and pull in
+// design tokens + mixins. Reset and components are NOT forwarded — they
+// emit CSS rules and should be opted into explicitly per view via
+// `@use 'shared/styles/reset';` / `@use 'shared/styles/components';`.
+
+@forward 'tokens';
+@forward 'mixins';
