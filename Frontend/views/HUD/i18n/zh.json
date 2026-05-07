@@ -1,0 +1,44 @@
+{
+  "meta": { "name": "中文", "dir": "ltr" },
+  "loc": {
+    "title": "本地化演示",
+    "subtitle": "切换语言，观察文本块如何重新排版。",
+    "paragraph": "这是一段较长的中文文字，用来展示中日韩书写系统中按字符换行的行为。中文词与词之间没有空格，因此换行不再依赖空白字符，而是允许在几乎任意字符边界处换行；标点符号会依规则与前一个字符贴合，避免出现在行首。",
+    "monospace": "编号 #00427 — 数量 ×12",
+    "shortLabel": "生命值",
+    "actions": {
+      "attack": "攻击",
+      "defend": "防御",
+      "retreat": "撤退"
+    },
+    "hint": "点击下方按钮以切换当前语言。"
+  },
+  "counter": { "label": "计数器" },
+  "eventLog": { "title": "事件日志", "status": "实时" },
+  "minimap": { "aria": "小地图", "label": "地图" },
+  "dancing": { "label": "渲染纹理", "alt": "角色预览" },
+  "inventory": { "aria": "技能背包", "slot": "槽位 {n}" },
+  "movement": {
+    "aria": "WASD 移动",
+    "forward": "前进（W）",
+    "back": "后退（S）",
+    "left": "向左（A）",
+    "right": "向右（D）",
+    "alt": "移动方向箭头"
+  },
+  "settings": {
+    "trigger": "设置",
+    "title": "设置",
+    "close": "关闭",
+    "graphics": "图形",
+    "qualityPreset": "画质预设",
+    "quality": {
+      "low": "低",
+      "medium": "中",
+      "high": "高",
+      "ultra": "极致"
+    },
+    "fov": "视野",
+    "done": "完成"
+  }
+}

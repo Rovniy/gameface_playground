@@ -1,0 +1,44 @@
+{
+  "meta": { "name": "English", "dir": "ltr" },
+  "loc": {
+    "title": "Localization Demo",
+    "subtitle": "Switch language and watch how the blocks reflow.",
+    "paragraph": "This long paragraph exists to demonstrate word-level line wrapping in a left-to-right language. Words break on whitespace boundaries, punctuation hugs the previous token, and the writing direction runs from the start of the line on the left to the end on the right.",
+    "monospace": "ID #00427 — quantity x12",
+    "shortLabel": "Health",
+    "actions": {
+      "attack": "Attack",
+      "defend": "Defend",
+      "retreat": "Retreat"
+    },
+    "hint": "Click a button below to change the active language."
+  },
+  "counter": { "label": "COUNTER" },
+  "eventLog": { "title": "EVENT LOG", "status": "LIVE" },
+  "minimap": { "aria": "Minimap", "label": "MAP" },
+  "dancing": { "label": "Render Texture", "alt": "Character preview" },
+  "inventory": { "aria": "Skill inventory", "slot": "Slot {n}" },
+  "movement": {
+    "aria": "WASD movement",
+    "forward": "Forward (W)",
+    "back": "Back (S)",
+    "left": "Left (A)",
+    "right": "Right (D)",
+    "alt": "Movement arrow"
+  },
+  "settings": {
+    "trigger": "Settings",
+    "title": "Settings",
+    "close": "Close",
+    "graphics": "Graphics",
+    "qualityPreset": "Quality preset",
+    "quality": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "ultra": "Ultra"
+    },
+    "fov": "FOV",
+    "done": "Done"
+  }
+}

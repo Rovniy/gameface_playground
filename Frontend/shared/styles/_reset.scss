@@ -21,3 +21,22 @@ body {
 button {
   cursor: pointer;
 }
+
+// Form controls have UA-default font-family / font-size / color that DO NOT
+// inherit from the parent — that's the spec, not a Cohtml quirk. Without
+// these resets the lang-aware [lang='..'] { font-family: ... } rules in
+// _fonts.scss never reach buttons, inputs, selects or textareas, and
+// non-Latin labels render as tofu against whatever fallback the runtime
+// picks. Setting the text properties to `inherit` makes form controls pick
+// up the active script's font stack from the .hud root just like any other
+// element.
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
+}

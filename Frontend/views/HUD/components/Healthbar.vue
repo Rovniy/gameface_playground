@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import {computed, onMounted, ref} from 'vue'
 import { useEngineEvent } from '@shared/js/engine'
 
 const health = ref(100)
@@ -11,6 +11,12 @@ const fillStyle = computed(() => ({
 useEngineEvent<[number, number]>('HUD_OnHealthChanged', (value, max) => {
   health.value = value
   maxHealth.value = max
+})
+
+onMounted(() => {
+  setInterval(() => {
+    health.value = Math.ceil(Math.random() * 100)
+  }, 2000)
 })
 </script>
 
@@ -37,7 +43,7 @@ useEngineEvent<[number, number]>('HUD_OnHealthChanged', (value, max) => {
     height: 100%;
     position: absolute;
     background: linear-gradient(90deg, $color-danger, $color-warn);
-    transition: width 0.2s ease;
+    transition: width 0.5s ease;
   }
 
   &__label {

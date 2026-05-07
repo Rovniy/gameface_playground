@@ -2,18 +2,23 @@
 import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 import { triggerEngine } from '@shared/js/engine'
 import cogsIcon from '@shared/assets/cogs.svg'
+import { useI18n } from '../js/i18n'
 
+const { t } = useI18n()
 const isOpen = ref(false)
+
+type Quality = 'low' | 'medium' | 'high' | 'ultra'
+const QUALITIES: Quality[] = ['low', 'medium', 'high', 'ultra']
 
 // Local UI state. Every control writes to this object via v-model and the
 // emitChange call pushes a snapshot to C# so the engine can persist /apply
-// settings out-of-band.
+// settings out-of-band. Language no longer lives here — Localization.vue owns
+// it and pushes HUD_OnLanguageChanged on its own.
 const settings = reactive({
   showDamageNumbers: true,
   showFps: false,
-  quality: 'high' as 'low' | 'medium' | 'high' | 'ultra',
+  quality: 'high' as Quality,
   fov: 90,
-  language: 'en' as 'en' | 'ru' | 'es' | 'de',
 })
 
 function emitChange() {
@@ -40,34 +45,34 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
     class="settings-trigger"
     type="button"
     :aria-expanded="isOpen"
-    aria-label="Settings"
-    title="Settings (Esc)"
+    :aria-label="t('settings.trigger')"
+    :title="`${t('settings.trigger')} (Esc)`"
     @click="toggle"
   >
     <img :src="cogsIcon" class="settings-trigger__icon" alt="" aria-hidden="true" />
   </button>
 
   <div v-if="isOpen" class="settings-overlay" @click.self="close">
-    <div class="settings-panel" role="dialog" aria-modal="true" aria-label="Settings">
+    <div class="settings-panel" role="dialog" aria-modal="true" :aria-label="t('settings.title')">
         <header class="settings-panel__header">
-          <h2 class="settings-panel__title">Settings</h2>
+          <h2 class="settings-panel__title">{{ t('settings.title') }}</h2>
           <button
             class="settings-panel__close"
             type="button"
-            aria-label="Close"
+            :aria-label="t('settings.close')"
             @click="close"
           >×</button>
         </header>
 
         <div class="settings-panel__body">
           <section class="settings-section">
-            <h3 class="settings-section__title">Graphics</h3>
+            <h3 class="settings-section__title">{{ t('settings.graphics') }}</h3>
 
             <div class="setting">
-              <span class="setting__label">Quality preset</span>
+              <span class="setting__label">{{ t('settings.qualityPreset') }}</span>
               <div class="radio-group">
                 <label
-                  v-for="q in (['low', 'medium', 'high', 'ultra'] as const)"
+                  v-for="q in QUALITIES"
                   :key="q"
                   class="radio-group__item"
                   :class="{ 'radio-group__item--active': settings.quality === q }"
@@ -79,13 +84,13 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
                     v-model="settings.quality"
                     @change="emitChange"
                   />
-                  <span class="radio-group__label">{{ q }}</span>
+                  <span class="radio-group__label">{{ t(`settings.quality.${q}`) }}</span>
                 </label>
               </div>
             </div>
 
             <label class="setting setting--row">
-              <span class="setting__label">FOV</span>
+              <span class="setting__label">{{ t('settings.fov') }}</span>
               <input
                 class="setting__input setting__input--number"
                 type="number"
@@ -100,7 +105,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
         </div>
 
       <footer class="settings-panel__footer">
-        <button class="settings-panel__btn" type="button" @click="close">Done</button>
+        <button class="settings-panel__btn" type="button" @click="close">{{ t('settings.done') }}</button>
       </footer>
     </div>
   </div>
@@ -221,7 +226,6 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
   padding: $space-sm $space-md;
   background: $color-accent;
   color: white;
-  font-weight: 700;
   border: none;
   border-radius: $radius-md;
 }

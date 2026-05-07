@@ -28,6 +28,7 @@ const viewsRoot = join(frontendRoot, 'views')
 const projectRoot = join(frontendRoot, '..')
 const destRoot = join(projectRoot, 'Assets', 'StreamingAssets', 'Cohtml', 'UIResources')
 const cohtmlSource = join(frontendRoot, 'shared', 'cohtml.js')
+const fontsSource = join(frontendRoot, 'shared', 'assets', 'fonts')
 
 // cohtml.js is a classic (non-module) script — Vite refuses to bundle those
 // from <script src> tags, so we copy it ourselves as a static sibling of
@@ -46,6 +47,38 @@ function copyCohtmlPlugin(outDir) {
     closeBundle() {
       mkdirSync(outDir, { recursive: true })
       copyFileSync(cohtmlSource, join(outDir, 'cohtml.js'))
+    },
+  }
+}
+
+// Mirror shared/assets/fonts/* into each view's <outDir>/assets/fonts/.
+// We can't lean on Vite's asset pipeline here because SCSS partials don't
+// rewrite url() paths — `url('../assets/fonts/X.ttf')` written inside
+// shared/styles/_fonts.scss ends up resolved relative to the consuming
+// view's CSS, which leaves Vite unable to find the source binary at build
+// time. Copying the binaries ourselves into each view keeps the runtime
+// path the SCSS expects, and means every per-view bundle is self-contained
+// (matching how cohtml.js is handled).
+function copyFontsPlugin(outDir) {
+  return {
+    name: 'gameface:copy-fonts',
+    apply: 'build',
+    buildStart() {
+      if (!existsSync(fontsSource)) return
+      for (const file of readdirSync(fontsSource)) {
+        this.addWatchFile(join(fontsSource, file))
+      }
+    },
+    closeBundle() {
+      if (!existsSync(fontsSource)) return
+      const dest = join(outDir, 'assets', 'fonts')
+      mkdirSync(dest, { recursive: true })
+      for (const file of readdirSync(fontsSource)) {
+        const src = join(fontsSource, file)
+        if (statSync(src).isFile()) {
+          copyFileSync(src, join(dest, file))
+        }
+      }
     },
   }
 }
@@ -86,7 +119,7 @@ for (const viewDir of viewDirs) {
       // the build output as-is (no hashing, no path rewriting). Use this for
       // raw files referenced with relative paths from index.html.
       logLevel: 'warn',
-      plugins: [copyCohtmlPlugin(outDir)],
+      plugins: [copyCohtmlPlugin(outDir), copyFontsPlugin(outDir)],
       build: {
         outDir,
         // Wipe outDir only on one-shot builds. In watch mode keep it warm so

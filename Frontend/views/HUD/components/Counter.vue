@@ -1,8 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useI18n } from '../js/i18n'
+
+const { t } = useI18n()
+</script>
 
 <template>
   <div class="counter">
-    <span class="counter__label">COUNTER:</span>
+    <span class="counter__label">{{ t('counter.label') }}</span>
     <span class="counter__value" data-bind-value="{{HudDemo.counter}}">0</span>
   </div>
 </template>

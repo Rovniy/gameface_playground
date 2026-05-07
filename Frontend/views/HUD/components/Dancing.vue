@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { useI18n } from '../js/i18n'
+
+const { t } = useI18n()
 const texture = 'coui://CharacterPreview'
 </script>
 
@@ -7,10 +10,10 @@ const texture = 'coui://CharacterPreview'
     <img
         class="character-preview__image"
         :src="texture"
-        alt="Character preview"
+        :alt="t('dancing.alt')"
     />
 
-    <span class="minimap__label">Render Texture</span>
+    <span class="character-preview__label">{{ t('dancing.label') }}</span>
   </div>
 </template>
 
@@ -24,6 +27,7 @@ const texture = 'coui://CharacterPreview'
   overflow: hidden;
   background: rgba(0, 0, 0, 0.45);
   border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
 
   &__image {
     width: 100%;
@@ -40,6 +44,7 @@ const texture = 'coui://CharacterPreview'
     font-weight: 700;
     letter-spacing: 0.1em;
     color: $color-muted;
+    text-transform: uppercase;
   }
 }
 </style>

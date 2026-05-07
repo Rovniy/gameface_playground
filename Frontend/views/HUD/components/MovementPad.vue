@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { triggerEngine } from '@shared/js/engine'
 import arrowIcon from '@shared/assets/arrow.svg'
+import { useI18n } from '../js/i18n'
 
 type Direction = 'up' | 'left' | 'down' | 'right'
+
+const { t, dir } = useI18n()
 
 function startMove(direction: Direction) {
   triggerEngine('HUD_OnMoveStart', direction)
@@ -14,56 +17,56 @@ function stopMove() {
 </script>
 
 <template>
-  <div class="movement-pad" aria-label="WASD movement">
-    <div class="movement-pad__row">
+  <div class="movement-pad" :aria-label="t('movement.aria')">
+    <div :class="[ 'movement-pad__row', { 'revert': dir === 'rtl' }]">
       <button
         class="movement-pad__btn"
         type="button"
-        aria-label="W — forward"
+        :aria-label="t('movement.forward')"
         title="W"
         @mousedown="startMove('up')"
         @mouseup="stopMove"
         @mouseleave="stopMove"
       >
-        <img :src="arrowIcon" alt="Forward arrow" class="movement-pad__icon" />
+        <img :src="arrowIcon" :alt="t('movement.alt')" class="movement-pad__icon" />
       </button>
     </div>
 
-    <div class="movement-pad__row">
+    <div :class="[ 'movement-pad__row', { 'revert': dir === 'rtl' }]">
       <button
         class="movement-pad__btn"
         type="button"
-        aria-label="A — left"
+        :aria-label="t('movement.left')"
         title="A"
         @mousedown="startMove('left')"
         @mouseup="stopMove"
         @mouseleave="stopMove"
       >
-        <img :src="arrowIcon" alt="Forward arrow" class="movement-pad__icon movement-pad__icon_270" />
+        <img :src="arrowIcon" :alt="t('movement.alt')" class="movement-pad__icon movement-pad__icon_270" />
       </button>
 
       <button
         class="movement-pad__btn"
         type="button"
-        aria-label="S — back"
+        :aria-label="t('movement.back')"
         title="S"
         @mousedown="startMove('down')"
         @mouseup="stopMove"
         @mouseleave="stopMove"
       >
-        <img :src="arrowIcon" alt="Forward arrow" class="movement-pad__icon movement-pad__icon_180" />
+        <img :src="arrowIcon" :alt="t('movement.alt')" class="movement-pad__icon movement-pad__icon_180" />
       </button>
 
       <button
         class="movement-pad__btn"
         type="button"
-        aria-label="D — right"
+        :aria-label="t('movement.right')"
         title="D"
         @mousedown="startMove('right')"
         @mouseup="stopMove"
         @mouseleave="stopMove"
       >
-        <img :src="arrowIcon" alt="Forward arrow" class="movement-pad__icon movement-pad__icon_90" />
+        <img :src="arrowIcon" :alt="t('movement.alt')" class="movement-pad__icon movement-pad__icon_90" />
       </button>
     </div>
   </div>
@@ -83,6 +86,10 @@ function stopMove() {
 .movement-pad__row {
   display: flex;
   gap: $space-xs;
+
+  &.revert {
+    flex-direction: row-reverse;
+  }
 }
 
 .movement-pad__btn {

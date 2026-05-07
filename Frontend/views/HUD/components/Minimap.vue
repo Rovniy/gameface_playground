@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { useEngineEvent } from '@shared/js/engine'
+import { useI18n } from '../js/i18n'
 
 type MinimapPoint = {
   x: number
@@ -8,6 +9,7 @@ type MinimapPoint = {
 }
 
 
+const { t } = useI18n()
 const MAP_SIZE = 160
 
 const heroX = ref(0.5)
@@ -52,7 +54,7 @@ useEngineEvent<[number, number]>('HUD_OnMinimapTrailPointAdded', (x, y) => {
 </script>
 
 <template>
-  <div class="minimap" aria-label="minimap">
+  <div class="minimap" :aria-label="t('minimap.aria')">
     <div class="minimap__viewport">
       <svg
           class="minimap__trail"
@@ -69,7 +71,7 @@ useEngineEvent<[number, number]>('HUD_OnMinimapTrailPointAdded', (x, y) => {
       <div class="minimap__hero" :style="heroStyle"></div>
     </div>
 
-    <span class="minimap__label">MAP</span>
+    <span class="minimap__label">{{ t('minimap.label') }}</span>
   </div>
 </template>
 

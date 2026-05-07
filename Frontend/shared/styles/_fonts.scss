@@ -1,0 +1,62 @@
+
+@font-face {
+  font-family: 'HudLatin';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/Inter-Regular.ttf') format('truetype');
+  coh-font-sdf: off;
+}
+@font-face {
+  font-family: 'HudLatin';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/Inter-Bold.ttf') format('truetype');
+  coh-font-sdf: off;
+}
+
+@font-face {
+  font-family: 'HudArabic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/NotoSansArabic-Regular.ttf') format('truetype');
+  coh-font-sdf: off;
+}
+@font-face {
+  font-family: 'HudArabic';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/NotoSansArabic-Bold.ttf') format('truetype');
+  coh-font-sdf: off;
+}
+
+@font-face {
+  font-family: 'HudCJK';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/NotoSansSC-Regular.ttf') format('truetype');
+  coh-font-sdf: off;
+}
+@font-face {
+  font-family: 'HudCJK';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/NotoSansSC-Bold.ttf') format('truetype');
+  coh-font-sdf: off;
+}
+
+// Attribute selectors (not :lang()) for two reasons: Cohtml's CSS subset is
+// conservative about pseudo-classes, and per-element lang attrs (the language
+// switcher buttons each carry their own lang="xx") need direct matches so a
+// button labeled "中文" renders in HudCJK even though its parent is lang="ar".
+[lang='en'],
+[lang='ru'] {
+  font-family: 'HudLatin', 'HudArabic', 'HudCJK', sans-serif;
+}
+
+[lang='ar'] {
+  font-family: 'HudArabic', 'HudLatin', 'HudCJK', sans-serif;
+}
+
+[lang='zh'] {
+  font-family: 'HudCJK', 'HudLatin', 'HudArabic', sans-serif;
+}

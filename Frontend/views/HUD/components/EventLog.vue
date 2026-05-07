@@ -1,10 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useI18n } from '../js/i18n'
+
+const { t } = useI18n()
+</script>
 
 <template>
   <div class="binding-demo__log-card">
     <div class="binding-demo__log-header">
-      <span>EVENT LOG</span>
-      <span class="binding-demo__log-status">LIVE</span>
+      <span>{{ t('eventLog.title') }}</span>
+      <span class="binding-demo__log-status">{{ t('eventLog.status') }}</span>
     </div>
 
     <div class="binding-demo__log-list">

@@ -7,16 +7,24 @@ import Settings from './Settings.vue'
 import Counter from "./Counter.vue";
 import Dancing from "./Dancing.vue";
 import EventLog from "./EventLog.vue";
+import Localization from "./Localization.vue";
+import { useI18n } from '../js/i18n'
+
+// Apply lang/dir at the HUD root so every descendant inherits the active
+// writing direction — RTL flips margin-inline / padding-inline / text-align
+// without each component needing its own dir handling.
+const { lang, dir } = useI18n()
 </script>
 
 <template>
-  <main class="hud">
+  <main :class="['hud', { 'hud--rtl': dir === 'rtl' }]" :lang="lang" :dir="dir">
     <header class="hud__row hud__top">
       <div class="hud__cell hud__cell--start">
         <div class="hud__column">
           <Healthbar />
           <Counter />
           <EventLog />
+          <Localization />
         </div>
       </div>
       <div class="hud__cell hud__cell--center"></div>
@@ -41,6 +49,7 @@ import EventLog from "./EventLog.vue";
 
 <style lang="scss">
 @use 'shared/styles/reset';
+@use "shared/styles/_fonts";
 </style>
 
 <style lang="scss" scoped>
@@ -62,6 +71,7 @@ import EventLog from "./EventLog.vue";
   // Background is click-through; only the actual widgets take pointer events
   // (set on direct children of cells / middle, never on empty layout cells).
   pointer-events: none;
+  direction: ltr;
 
   &__row {
     display: flex;
@@ -107,6 +117,10 @@ import EventLog from "./EventLog.vue";
         align-items: flex-start;
       }
     }
+  }
+
+  &--rtl {
+    direction: rtl;
   }
 }
 </style>
